@@ -15,9 +15,9 @@ Ce projet a pour objectif de créer un script qui s’exécute sur une machine l
 ## Membres du Groupe de Projet et Rôles par Sprint
 
 ### Sprint 1 : Mise en place de l'environnement
-- **Product Owner (PO)** : [Nom]
-- **Scrum Master (SM)** : [Nom]
-- **Développeurs** : [Nom], [Nom], [Nom]
+- **Product Owner (PO)** : Ronan
+- **Scrum Master (SM)** : Nicolas
+- **Développeurs** : Mehdi, Julie, Mohamed
 
 ### Sprint 2 : Développement des premiers scripts
 - **Product Owner (PO)** : [Nom]
@@ -44,11 +44,11 @@ Ce projet a pour objectif de créer un script qui s’exécute sur une machine l
 - **Système d'exploitation** :
   - OS : [Nom du système d'exploitation]
   - Version : [Version du système d'exploitation]
-- **Langages de script** : Python/Bash
-- **Outils de gestion de projet** : Jira, Confluence
+- **Langages de script** : Powershell/Bash
+- **Outils de gestion de projet** : Jira
 - **Contrôle de version** : Git
-- **Outils de communication** : Slack/Teams
-- **Automatisation des tâches** : Ansible (si nécessaire)
+- **Outils de communication** : Discord/GoogleMeet
+- **Automatisation des tâches** : 
 
 ## Difficultés Rencontrées
 
