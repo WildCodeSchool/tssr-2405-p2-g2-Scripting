@@ -67,7 +67,7 @@
 
 5. **Entrer les informations IP :**
    - Sélectionnez "Utiliser l'adresse IP suivante".
-   - Entrez l'adresse IP : `192.168.1.40`. pour le Windows Server et `192.168.1.43` pour le Windows client
+   - Entrez l'adresse IP : `192.168.1.40`. pour le Windows client et `192.168.1.43` pour le Windows Server
    - Masque de sous-réseau : `255.255.255.0` 
    - Passerelle par défaut : entrez l'adresse IP de votre routeur (par exemple, `192.168.1.254`).
 
