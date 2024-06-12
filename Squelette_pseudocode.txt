@@ -1,0 +1,144 @@
+#!shebang
+
+#choix appareil ou utilisateur dans une variable $cible
+
+demander parmi ordinateur (1) ou utilisateur (2)
+
+#enregistrer nom/adresse ordinateur dans une variable $poste
+choix 
+    1) ordinateur
+    demander nom ordinateur / adresse IP
+    validation de cible yes/no
+    if yes
+    then
+#demander action ou information création d'une variable $choixposte
+
+        
+        demander la variable $choixposte parmi 1 / 2
+        débutchoix
+        boucle tant que vrai $choixposte != 1 / 2
+            1) action
+            demander la variable $actionposte parmi 1 / 2 / 3 
+                débutchoix
+                boucle tant que $actionposte != 1 / 2 / 3
+                    1) arrêt
+                    arrêter $poste
+                    confirmation arrêt de l'ordinateur
+                    2) redémarrage
+                    redémarrer $poste
+                    confirmation redémmarage de $poste
+
+                    3) verrouillage
+                    verrouiller $poste
+                    confirmation verrouillage de $poste
+
+                    *) autrechoix
+                    renvoyer message erreur
+                fin tant que
+                fin choix
+
+            2) information
+                    afficher "1 : donner version OS"
+                    afficher "2 : donner liste utilisateurs"
+                        demander la variable $infoposte parmi 1 / 2 
+                boucle tant que vrai
+
+                    si $infoposte contient uniquement "1"
+                        commande afficher l'OS
+                        afficher résultat
+                        rediriger résultat dans /Documents/fichier.txt
+
+                    si $infoposte contient uniquement "2"
+                        commande afficher liste utilisateurs
+                        afficher résultat
+                        rediriger résultat dans /Documents/fichier.txt
+
+                    si $infoposte contient "1" et "2"
+                        commande afficher l'OS
+                        rediriger résultat dans /Documents/fichier.txt
+                        commande afficher liste utilisateurs
+                        ajouter résultat dans /Documents/fichier.txt  
+                   
+                    sinon
+                        afficher "message erreur, réessayer"
+                    
+                    fin tant que
+                    fin si
+            
+            *) autrechoix
+            renvoyer message erreur
+            fin tant que
+            fin boucle
+    else 
+    exit
+    fi
+
+#si la cible est un utilisateur créer une variable $choixuser
+    2) utilisateur
+    demander quel utilisateur est concerné
+    demander confirmation yes / no
+    yes alors
+
+#demander action ou information création d'une variable $choixutilisateur
+        demander la variable $choixutilisateur parmi 1 / 2
+        boucle tant que $choixutilisateur != 1 / 2
+        case
+            1) action
+                boucle tant que $actionuser != 1 / 2 / 3 / 4
+                demander la variable $actionuser parmi 1 / 2 / 3 / 4
+                case
+                    1) créer un utilisateur
+                    demander quel nom d'utilisateur
+                    créer l'utilisateur $user
+                    demander quel groupe pour l'utilisateur $groupe
+                    déplacer $user dans $groupe
+
+                    2) supprimer un utilisateur 
+                    demander quel utilisateur supprimer $user
+                    demander confirmation yes / no
+                        si yes
+                    supprimer $user
+                    afficher $user a été supprimé
+                    autre
+                    afficher l'utilisateur n'a pas été supprimé
+                    sortie
+
+                    3) créer un groupe
+                    demander quel groupe créer $groupe
+                    créer $groupe
+
+                    4) déplacer un utilisateur dans un groupe
+                    demander quel utilisateur déplacer $user
+                    demander dans quel groupe déplacer l'utilisateur $groupe
+                    déplacer $user dans $groupe
+
+                    *) autrechoix
+                    renvoyer message d'erreur
+                    fin boucle
+
+            2) information
+                afficher "1 : date de dernière connexion"
+                afficher "2 : 
+                demander quelle information $choix parmi 1 / 2
+                boucle tant que vrai 
+                    Si $choix contient uniquement "1"
+                    afficher date de dernière connexion de $user
+                    afficher résultat
+                    enregistrer résultat dans /documents/fichier.txt
+
+                    Si $choix contient uniquement "2"
+                    afficher
+                    afficher résultat
+                    enregistrer résultat dans /documents/fichier.txt
+
+                    Si $choix contient "1" et "2"
+                    afficher date de dernière connexion de $user
+                    enregistrer résultat dans /documents/fichier.txt
+                    afficher
+                    ajouter résultat dans /documents/fichier.txt 
+
+                    Sinon
+                    afficher message d'erreur
+
+    autre 
+    sortie
