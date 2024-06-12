@@ -53,14 +53,14 @@ Ce projet a pour objectif de créer un script qui s’exécute sur une machine l
 ## Difficultés Rencontrées
 
 ### Problèmes Techniques Rencontrés
-- [Description du problème 1]
+- Mise en réseau des VM clients et serveurs
 - [Description du problème 2]
 - [Description du problème 3]
 
 ## Solutions Trouvées
 
 ### Solutions et Alternatives
-- [Solution pour le problème 1]
+- Configurations des IP fixes pour chaque VM et des pare-feu pour autoriser les communications, test de connectivité via la commande PING.
 - [Solution pour le problème 2]
 - [Solution pour le problème 3]
 
