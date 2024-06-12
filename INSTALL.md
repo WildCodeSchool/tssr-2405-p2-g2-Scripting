@@ -30,12 +30,12 @@ Le nom de votre interface réseau (surligné en jaune) :
 
 Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
 
-`-auto ens18
--iface ens18 inet static
-   - address 192.168.1.x
-    -netmask 255.255.255.0
-   - gateway 192.168.1.254
-   - dns-nameservers 192.168.1.254`
+- auto ens18
+- iface ens18 inet static
+- address 192.168.1.x
+- netmask 255.255.255.0
+- gateway 192.168.1.254
+- dns-nameservers 192.168.1.254
 
 4. Enregistrer et fermer le fichier
 Pour enregistrer et fermer le fichier dans nano :
