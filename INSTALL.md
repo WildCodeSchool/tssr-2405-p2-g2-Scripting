@@ -17,10 +17,11 @@
 Ouvrez un terminal et passez en mode superutilisateur ou utilisez sudo pour chaque commande.
 
 2. Identifier le nom de l'interface réseau
-Vérifiez le nom de l'interface réseau (ici, nous supposons que c'est ).
+Vérifiez le nom de l'interface réseau (ici, nous supposons que c'est ens18 ).
 `ip a`
 
-Le nom de l'interface (surligné en jaune) :
+Le nom de votre interface réseau (surligné en jaune) :
+
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian1.png)
 
 4. Modifier le fichier de configuration réseau
