@@ -79,5 +79,26 @@
 7. **Valider les paramètres :**
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
-  
+
+ #### d. Configurations des pare-feu pour la connectivité
+## Pour Windows
+
+1. **Ouvrir le Pare-feu Windows avec fonctions avancées de sécurité :**
+   - Cliquez sur le bouton Démarrer et tapez "Pare-feu Windows avec fonctions avancées de sécurité".
+   - Cliquez sur l'application correspondante pour l'ouvrir.
+
+2. **Créer une règle entrante pour ICMP :**
+   - Dans le panneau de gauche, cliquez sur "Règles de trafic entrant".
+   - Dans le panneau de droite, cliquez sur "Nouvelle règle...".
+   - Sélectionnez "Personnalisée" et cliquez sur "Suivant".
+   - Sélectionnez "Tous les programmes" et cliquez sur "Suivant".
+   - Sélectionnez "Type de protocole" et choisissez "ICMPv4" dans le menu déroulant.
+   - Cliquez sur "Suivant".
+   - Sélectionnez "Adresse IP source" pour définir les adresses spécifiques ou laissez "Toutes les adresses" pour permettre les pings de n'importe quelle source.
+   - Cliquez sur "Suivant".
+   - Sélectionnez "Autoriser la connexion".
+   - Cliquez sur "Suivant".
+   - Choisissez les profils pour lesquels cette règle s'applique (Domaine, Privé, Public).
+   - Cliquez sur "Suivant".
+   - Donnez un nom à la règle (par exemple, "Autoriser ICMPv4 Entrant") et cliquez sur "Terminer".
 
