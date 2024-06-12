@@ -56,20 +56,28 @@
 3. **Sélectionner l'adaptateur réseau :**
    - Faites un clic droit sur l'adaptateur réseau que vous souhaitez configurer.
    - Sélectionnez "Propriétés".
+     
+![Choix de l'adaptateur](Images/Mise_en_reseaux.png)
 
 4. **Configurer TCP/IPv4 :**
    - Dans la liste, sélectionnez "Protocole Internet version 4 (TCP/IPv4)".
    - Cliquez sur "Propriétés".
+  
+![ConfigTCP/IP](Images/mise_en_reseaux_2.png)
 
 5. **Entrer les informations IP :**
    - Sélectionnez "Utiliser l'adresse IP suivante".
-   - Entrez l'adresse IP : `192.168.1.40`.
-   - Masque de sous-réseau : `255.255.255.0` (par défaut pour un réseau de classe C).
-   - Passerelle par défaut : entrez l'adresse IP de votre routeur (par exemple, `192.168.1.1`).
+   - Entrez l'adresse IP : `192.168.1.40`. pour le Windows Server et `192.168.1.43` pour le Windows client
+   - Masque de sous-réseau : `255.255.255.0` 
+   - Passerelle par défaut : entrez l'adresse IP de votre routeur (par exemple, `192.168.1.254`).
 
 6. **Configurer les serveurs DNS :**
-   - Entrez les adresses des serveurs DNS préférés et alternatifs (par exemple, `8.8.8.8` pour Google DNS).
+   - Serveurs DNS préféré  `192.168.1.254` 
+
+![ConfigManuelIp](Images/mise_en_reseaux_3.png)
 
 7. **Valider les paramètres :**
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
+  
+
