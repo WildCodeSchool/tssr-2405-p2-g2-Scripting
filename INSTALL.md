@@ -1,4 +1,4 @@
-# Changer l'adresse IP sur Debian Linux
+# Changer l'adresse IP sur Debian et Ubuntu Linux
 
 ## Prérequis techniques
 
