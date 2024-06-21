@@ -61,5 +61,7 @@ $Cred | Export-Clixml -Path "C:\chemin\vers\cred.xml"
 
 Pour Exécuter les commandes à distances, il faudra inclure dans les scripts 
 
-```$Cred = Import-Clixml -Path "C:\Users\Administrator\pclients\cred.xml"
+```
+$Cred = Import-Clixml -Path "C:\Users\Administrator\pclients\cred.xml"
 Invoke-Command -ComputerName IPduposteclient -Credential $Cred -ScriptBlock {scriptàlancer}
+```
