@@ -1,5 +1,8 @@
 #!shebang
 
+Declaration de variable pour nom d'utilisateur et nom ordinateur pour faciliter connexion ssh
+exempple : wilder = wilder@192.168.1.10
+
 #choix appareil ou utilisateur dans une variable $cible
 
 demander parmi ordinateur (1) ou utilisateur (2)
