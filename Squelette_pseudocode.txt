@@ -11,6 +11,7 @@ choix
     validation de cible yes/no
     if yes
     then
+CONNEXION SSH
 #demander action ou information création d'une variable $choixposte
 
         
@@ -78,7 +79,7 @@ choix
     demander quel utilisateur est concerné
     demander confirmation yes / no
     yes alors
-
+CONNEXION SSH
 #demander action ou information création d'une variable $choixutilisateur
         demander la variable $choixutilisateur parmi 1 / 2
         boucle tant que $choixutilisateur != 1 / 2
