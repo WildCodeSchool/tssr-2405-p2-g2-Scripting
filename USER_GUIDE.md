@@ -15,3 +15,11 @@
 - Vous pouvez aussi  "Obtenir la date de derniere connexion" d'un utilisateur souhaité en tapant 3 ou faire "Retour" en tapant 4.
 
 ![Capture d'écran 2024-07-03 164705](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/9f85d529-5e9c-4e57-860b-b9de2e381e91)
+
+#### Dans le menu "Ordinateur": 
+
+- Vous pouvez "Arrêter l'ordinateur" souhaité en tapant 1 (avec l'IP ou le nom de l'ordinateur) .
+- Vous pouvez "Redémarrer l'ordibateur" souhaité en tapant 2 (avec l'IP ou le nom de l'ordinateur) .
+- Vous pouvez aussi  "Obtenir la version de l'OS" de l'ordinateur cible en tapant 3 (avec l'IP ou le nom de l'ordinateur) ou faire "Retour" en tapant 4.
+
+![Capture d'écran 2024-07-03 164742](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/f1414c6d-75e1-4568-ade2-21982b18551a)
