@@ -8,6 +8,10 @@
 
 ### Menu Utilisateur
 
-#### Dans le menu "Utilisateur", vous pouvez "Créer un compte utilisateur" en tapant 1 qui va vous créer un utilisateur du nom que vous souhaitez localement sur votre ordinateur. Vous pouvez "Supprimez un compte utilisateur" en tapant 2 ( il faut le nom de l'utilisateur exacte pour le faire ) . Vous pouvez aussi  "Obtenir la date de derniere connexion" d'un utilisateur souhaité en tapant 3 ou faire "Retour" en tapant 4.
+#### Dans le menu "Utilisateur": 
+
+- Vous pouvez "Créer un compte utilisateur" en tapant 1 qui va vous créer un utilisateur du nom que vous souhaitez localement sur votre ordinateur.
+- Vous pouvez "Supprimez un compte utilisateur" en tapant 2 ( il faut le nom de l'utilisateur exacte pour le faire ) .
+- Vous pouvez aussi  "Obtenir la date de derniere connexion" d'un utilisateur souhaité en tapant 3 ou faire "Retour" en tapant 4.
 
 ![Capture d'écran 2024-07-03 164705](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/9f85d529-5e9c-4e57-860b-b9de2e381e91)
