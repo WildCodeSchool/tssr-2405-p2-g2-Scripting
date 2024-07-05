@@ -28,13 +28,16 @@
 
 ### 1. Ouvrir une session avec des privilèges administratifs
 
-Ouvrez un terminal et passez en mode superutilisateur ou utilisez sudo pour chaque commande.
+#### Ouvrez un terminal et passez en mode superutilisateur ou utilisez sudo pour chaque commande.
 
-2. Identifier le nom de l'interface réseau
-Vérifiez le nom de l'interface réseau (ici, nous supposons que c'est ens18 ).
+
+#### 2. Identifier le nom de l'interface réseau
+
+- Vérifiez le nom de l'interface réseau (ici, nous supposons que c'est ens18 ).
+
 `ip a`
 
-Le nom de votre interface réseau (surligné en jaune) :
+- Le nom de votre interface réseau (surligné en jaune) :
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian1.png)
 
@@ -142,12 +145,12 @@ sudo systemctl enable ssh`
 
 `sudo nano /etc/ssh/sshd_config`
 
-Quelques paramètres importants que vous pouvez configurer :
+- Quelques paramètres importants que vous pouvez configurer :
 
 `PermitRootLogin no
 PasswordAuthentication yes`
 
-Redémarrer le service SSH pour appliquer les modifications :
+- Redémarrer le service SSH pour appliquer les modifications :
 
 `sudo systemctl restart ssh`
 
@@ -170,7 +173,7 @@ sudo apt upgrade`
 Vérification de la Connexion SSH
 Trouver l'adresse IP du serveur Debian :
 
-Sur le serveur Debian, exécutez :
+#### Sur le serveur Debian, exécutez :
 
 `hostname -I`
 
@@ -180,8 +183,8 @@ Sur le serveur Debian, exécutez :
 
 `ssh username@ip_address_of_debian_server`
 
-Remplacez `username` par votre nom d'utilisateur sur le serveur Debian.
-Remplacez `ip_address_of_debian_server` par l'adresse IP obtenue.
+- Remplacez `username` par votre nom d'utilisateur sur le serveur Debian.
+- Remplacez `ip_address_of_debian_server` par l'adresse IP obtenue.
 
 - Accepter l'empreinte numérique de la clé du serveur la première fois :
 
