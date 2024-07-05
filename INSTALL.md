@@ -122,7 +122,7 @@ Vérifiez que l'adresse IP a été mise à jour correctement.
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
 
-### Pour Linux : Client Ubuntu
+### Sur Linux : Client Ubuntu
 
 ### Ouvrir le fichier de configuration Netplan :
 
