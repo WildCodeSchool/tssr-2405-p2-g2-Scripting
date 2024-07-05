@@ -9,7 +9,7 @@
 ### Logiciel
 - **Systèmes d'exploitation** :
   
-### Les Serveurs
+#### Les Serveurs
 
 | **Système**       | **Debian 12.5**  | **Windows Server 2022**  |
 |-------------------|------------------|--------------------------|
@@ -19,7 +19,7 @@
 | **IP Fixe**       | 172.16.10.46/24  | 172.16.10.40/24           |
 | **Spécificité**   | Bash shell 5.2.21             | Powershell Core 7.4 LTS inclus |
 
-### Les Clients
+#### Les Clients
 
 | **Système**          | **Ubuntu 22.04 LTS 01** | **Windows 10** | 
 |----------------------|-------------------------|-------------------------|
@@ -40,8 +40,8 @@
 
  #### a. Configurations des adresses IP fixe pour la mise en réseau  
  
-## Pour Windows
- - Configuration de l'IP statique sur Windows Server et Windows 10 en interface graphique
+#### Sur Windows :
+ - Configuration de l'IP statique en interface graphique
 
 1. **Ouvrir le Centre Réseau et Partage :**
    - Cliquez sur l'icône réseau dans la barre des tâches.
@@ -77,9 +77,7 @@
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
   
-## Pour Linux
-
-- Sur le serveur DEBIAN
+### Pour Linux : Serveur DEBIAN
 
 ### 1. Ouvrir une session avec des privilèges administratifs
 
@@ -124,7 +122,7 @@ Vérifiez que l'adresse IP a été mise à jour correctement.
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
 
-- Sur le client Ubuntu
+### Pour Linux : Client Ubuntu
 
 ### Ouvrir le fichier de configuration Netplan :
 
@@ -169,8 +167,8 @@ Vérifier la nouvelle adresse IP :
 
 - Assurez-vous que l'adresse IP a été correctement modifiée.
 
- #### d. Configurations des pare-feu pour la connectivité
-## Pour Windows
+ #### b. Configurations des pare-feu pour la connectivité
+### Pour Windows
 
 1. **Ouvrir le Pare-feu Windows avec fonctions avancées de sécurité :**
    - Cliquez sur le bouton Démarrer et tapez "Pare-feu Windows avec fonctions avancées de sécurité".
@@ -191,9 +189,64 @@ Vérifier la nouvelle adresse IP :
    - Cliquez sur "Suivant".
    - Donnez un nom à la règle (par exemple, "Autoriser ICMPv4 Entrant") et cliquez sur "Terminer".
   
-  #### e. Installation et configuration de la connexion SSH Serveur/client LINUX
- 
+### Sur le Serveur Debian
 
+1. **Vérifier l'état du pare-feu** : Assurez-vous que le pare-feu est installé et actif. Par défaut, sur Debian, cela peut être `iptables` ou `nftables`. Vérifiez avec la commande :
+    
+    
+    `sudo iptables -L`
+    
+2. **Autoriser le trafic ICMP entrant** : Si vous utilisez `iptables`, vous pouvez autoriser le trafic ICMP entrant en ajoutant une règle. Par exemple, pour autoriser les requêtes ICMP echo (ping) :
+    
+    
+    `sudo iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT`
+    
+3. **Sauvegarder les règles** (optionnel mais recommandé) : Pour sauvegarder vos règles `iptables` de manière persistante, vous pouvez installer `iptables-persistent` :
+
+    
+    `sudo apt-get update sudo apt-get install iptables-persistent`
+    
+    Suivez les instructions pour sauvegarder vos règles actuelles.
+    
+
+### Sur le Client Ubuntu
+
+1. **Vérifier l'état du pare-feu** : De même, assurez-vous que le pare-feu est activé sur le client Ubuntu. Par défaut, Ubuntu utilise `ufw` (Uncomplicated Firewall).
+    
+2. **Configurer UFW pour autoriser le trafic ICMP** :
+    
+    - Si `ufw` n'est pas installé, installez-le avec :
+        
+        
+        `sudo apt-get update sudo apt-get install ufw`
+        
+    - Autorisez le trafic ICMP entrant en ajoutant une règle spécifique :
+        
+        
+        `sudo ufw allow icmp`
+        
+    - Activez UFW si ce n'est pas déjà fait :
+        
+        
+        `sudo ufw enable`
+        
+3. **Vérifier la configuration** : Vous pouvez vérifier les règles appliquées avec :
+    
+    
+    `sudo ufw status verbose`
+    
+
+### Tester la Connexion
+
+Une fois les règles configurées sur le serveur Debian et le client Ubuntu, vous pouvez tester la connectivité en utilisant la commande `ping` :
+
+
+`ping <adresse IP du serveur Debian>`
+
+Assurez-vous que les réponses ICMP echo-reply sont reçues avec succès, ce qui indique que le trafic ICMP est autorisé à travers les pare-feu.
+  
+### 2. Installation et configuration de la connexion SSH Serveur/client LINUX
+ 
 1. Installation de SSH  
  
 L'installation de SSH (Secure Shell) permet d'établir une connexion sécurisée entre un serveur et un client. Cette connexion chiffrée garantit la confidentialité et l'intégrité des données échangées.
@@ -286,7 +339,7 @@ Recharge du fichier de configuration du shell :
 source ~/.bashrc
 ```
 
-#### d. Installation et configuration de la connexion à distance Serveur/client WINDOWS
+### 3. Installation et configuration de la connexion à distance Serveur/client WINDOWS
 
 ## **Activer PowerShell Remoting**
 _Sur le poste client_
