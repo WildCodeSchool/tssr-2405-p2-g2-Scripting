@@ -83,7 +83,8 @@ Vérifiez que l'adresse IP a été mise à jour correctement.
 
 - Localisez la section ethernets et modifiez-la pour définir une adresse IP statique. Voici un exemple de configuration :
 
-```yaml
+`
+yaml
 network:
   version: 2
   ethernets:
@@ -92,24 +93,23 @@ network:
       addresses: [192.168.1.100/24]
       gateway4: 192.168.1.1
       nameservers:
-        addresses: [8.8.8.8, 8.8.4.4] ```
+        addresses: [8.8.8.8, 8.8.4.4]
+`
 
-
-- Remplacez eth0 par le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande ip a).
-- Remplacez 192.168.1.100/24 par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
-- Remplacez 192.168.1.1 par l'adresse IP de la passerelle (gateway).
-- Remplacez 8.8.8.8, 8.8.4.4 par les adresses IP des serveurs DNS que vous souhaitez utiliser.
+- Remplacez `eth0` ar le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande `ip a`).
+- Remplacez `192.168.1.100/24` par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
+- Remplacez `192.168.1.1` par l'adresse IP de la passerelle (gateway).
+- Remplacez `8.8.8.8`, `8.8.4.4` par les adresses IP des serveurs DNS que vous souhaitez utiliser.
 - Appliquer les modifications :
 
-```sudo netplan apply```
+`sudo netplan apply`
 
 Vérification
 Vérifier la nouvelle adresse IP :
 
-```ip a```
+`ip a`
 
 - Assurez-vous que l'adresse IP a été correctement modifiée.
-
 
 
 ## Installation d'OpenSSH sur le Serveur Debian
@@ -118,68 +118,77 @@ Vérifier la nouvelle adresse IP :
 
 - Mettre à jour la liste des paquets et les paquets installés :
 
-```sudo apt update
-sudo apt upgrade```
+`sudo apt update
+sudo apt upgrade`
 
 ### Étape 2 : Installation d'OpenSSH Server
 
-Installer OpenSSH Server :
+- Installer OpenSSH Server :
 
-```sudo apt install openssh-server```
+`sudo apt install openssh-server`
 
-Vérifier que le service SSH est actif :
+- Vérifier que le service SSH est actif :
 
-sudo systemctl status ssh
+`sudo systemctl status ssh`
 
-Démarrer et activer le service SSH :
+- Démarrer et activer le service SSH :
 
-sudo systemctl start ssh
-sudo systemctl enable ssh
-Configuration du Serveur SSH 
-Configurer les paramètres du serveur SSH en éditant le fichier de configuration
+`sudo systemctl start ssh
+sudo systemctl enable ssh`
 
-sudo nano /etc/ssh/sshd_config
+### Configuration du Serveur SSH :
+
+- Configurer les paramètres du serveur SSH en éditant le fichier de configuration
+
+`sudo nano /etc/ssh/sshd_config`
+
 Quelques paramètres importants que vous pouvez configurer :
 
-PermitRootLogin no
-PasswordAuthentication yes
+`PermitRootLogin no
+PasswordAuthentication yes`
+
 Redémarrer le service SSH pour appliquer les modifications :
 
-sudo systemctl restart ssh
+`sudo systemctl restart ssh`
 
-Installation sur le Client Ubuntu
-Étape 1 : Mise à jour du Système
-Mettre à jour la liste des paquets et les paquets installés :
+## Installation sur le Client Ubuntu
 
-sudo apt update
-sudo apt upgrade
+### Étape 1 : Mise à jour du Système
 
-Étape 2 : Installation d'OpenSSH Client
+- Mettre à jour la liste des paquets et les paquets installés :
 
-Installer OpenSSH Client :
+`sudo apt update
+sudo apt upgrade`
 
-sudo apt install openssh-client
+
+### Étape 2 : Installation d'OpenSSH Client
+
+- Installer OpenSSH Client :
+
+`sudo apt install openssh-client`
+
 Vérification de la Connexion SSH
 Trouver l'adresse IP du serveur Debian :
 
 Sur le serveur Debian, exécutez :
 
-hostname -I
+`hostname -I`
 
 Se connecter au serveur Debian depuis le client Ubuntu :
 
 Sur le client Ubuntu, ouvrez un terminal et exécutez :
 
-ssh username@ip_address_of_debian_server
+`ssh username@ip_address_of_debian_server`
+
 Remplacez username par votre nom d'utilisateur sur le serveur Debian.
 Remplacez ip_address_of_debian_server par l'adresse IP obtenue.
 Accepter l'empreinte numérique de la clé du serveur la première fois :
 
 Vous verrez un message similaire à :
 vbnet
-The authenticity of host 'ip_address_of_debian_server (ip_address_of_debian_server)' can't be established.
+`The authenticity of host 'ip_address_of_debian_server (ip_address_of_debian_server)' can't be established.
 ECDSA key fingerprint is SHA256:...
-Are you sure you want to continue connecting (yes/no)?
+Are you sure you want to continue connecting (yes/no)?`
 
 Tapez yes et appuyez sur Entrée.
 
