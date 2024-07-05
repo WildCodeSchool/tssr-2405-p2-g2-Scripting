@@ -174,25 +174,26 @@ Sur le serveur Debian, exécutez :
 
 `hostname -I`
 
-Se connecter au serveur Debian depuis le client Ubuntu :
+- Se connecter au serveur Debian depuis le client Ubuntu :
 
-Sur le client Ubuntu, ouvrez un terminal et exécutez :
+- Sur le client Ubuntu, ouvrez un terminal et exécutez :
 
 `ssh username@ip_address_of_debian_server`
 
-Remplacez username par votre nom d'utilisateur sur le serveur Debian.
-Remplacez ip_address_of_debian_server par l'adresse IP obtenue.
-Accepter l'empreinte numérique de la clé du serveur la première fois :
+Remplacez `username` par votre nom d'utilisateur sur le serveur Debian.
+Remplacez `ip_address_of_debian_server` par l'adresse IP obtenue.
 
-Vous verrez un message similaire à :
-vbnet
+- Accepter l'empreinte numérique de la clé du serveur la première fois :
+
+- Vous verrez un message similaire à :
+
 `The authenticity of host 'ip_address_of_debian_server (ip_address_of_debian_server)' can't be established.
 ECDSA key fingerprint is SHA256:...
 Are you sure you want to continue connecting (yes/no)?`
 
-Tapez yes et appuyez sur Entrée.
+- Tapez `yes` et appuyez sur Entrée.
 
-Entrer le mot de passe pour username sur le serveur Debian.
+- Entrer le mot de passe pour username sur le serveur Debian.
 
 
 
