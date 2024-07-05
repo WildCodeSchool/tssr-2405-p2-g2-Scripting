@@ -51,3 +51,54 @@ Vérifiez que l'adresse IP a été mise à jour correctement.
 `ip a`
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
+
+## 3. VM Ubuntu Client 22.04 LTS
+
+#### Prérequis : 
+- Client Ubuntu 22.04 LTS :
+- Nom : CLILIN01
+- Compte utilisateur : wilder (dans le groupe sudo)
+- Mot de passe : Azerty1*
+- Adresse IP fixe : 172.16.10.30/24
+
+#### Configuration obligatoire :
+**A. Installation SSH**
+
+ - Exécuter le Terminal
+
+```bash
+sudo apt-get install openssh-server
+```
+
+![UBUNTU](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P1-G1-SecurisationDeMotDePasse/main/Images/Images%20Greg/install%20ssh%20Ubuntu%201.PNG)
+
+Lors du message : **`Souhaitez-vous continuer ? [O/n]`**-> Taper **`O`**
+
+
+- Une fois le SSH installé, il faut l'activer :
+```bash
+ sudo systemctl enable ssh
+```
+
+![active](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P1-G1-SecurisationDeMotDePasse/main/Images/Images%20Greg/activation%20ssh%20ubuntu.PNG)
+
+
+**B. Installation des paquets nécessaires** 
+
+- Exécuter le Terminal
+
+- Pour installer le paquet de la commande ifconfig faire :
+  ```bash
+  sudo apt install net-tools
+  ```
+
+  ![](https://www.cjoint.com/doc/24_04/NDro5ObmV1n_IFconfig.png)
+
+- Pour installer le paquet de la commande
+  ```bash
+  sudo apt install sysstat
+  ```
+  ![](https://www.cjoint.com/doc/24_04/NDrpmkMXM2n_Bash-proceseru.png)
+
+
+
