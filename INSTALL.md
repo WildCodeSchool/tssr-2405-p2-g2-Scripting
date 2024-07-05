@@ -8,17 +8,29 @@
 
 ### Logiciel
 - **Systèmes d'exploitation** :
-  - OS : Windows Server
-  - Version : 2022
-  - OS : Windows 
-  - Version : 10
-- **Langages de script** :
-  - Powershell
-  - Bash
+  
+### Les Serveurs
+
+| **Système**       | **Debian 12.5**  | **Windows Server 2022**  |
+|-------------------|------------------|--------------------------|
+| **HostName**      | SRVLX01          | SRVWIN01                 |
+| **Login**         | root             | administrator            |
+| **Password**      | Azerty1*         | Azerty1*                 |
+| **IP Fixe**       | 172.16.10.46/24  | 172.16.10.40/24           |
+| **Spécificité**   | Bash shell 5.2.21             | Powershell Core 7.4 LTS inclus |
+
+### Les Clients
+
+| **Système**          | **Ubuntu 22.04 LTS 01** | **Windows 10** | 
+|----------------------|-------------------------|-------------------------|
+| **HostName**         | CLILIN01                | CLIWIN01                | 
+| **Login**            | wilder                  | wilder                  | 
+| **Password**         | Azerty1*                | Azerty1*                | 
+| **IP Fixe**          | 172.16.10.45/24         | 172.16.10.43/24         |
+
 - **Outils et dépendances** :
   - OpenSSH (pour les connexions SSH)
   - Git (pour le contrôle de version)
-  - 
 - **Permissions** :
   - Accès administrateur sur les machines distantes pour exécuter certaines tâches.
 
@@ -26,24 +38,9 @@
 
 ### 1. Préparation de l'Environnement
 
-#### a. Configurations des clients
-
-- Client Windows 10 
-- Nom : CLIWIN01
-- Compte utilisateur : wilder (dans le groupe des admins locaux)
-- Mot de passe : Azerty1*
-- Adresse IP fixe : 192.168.1.40
-
- #### b. Configurations des serveurs
+ #### a. Configurations des adresses IP fixe pour la mise en réseau  
  
-- Serveur Windows Server 2022 :
-- Nom : SRVWIN01
-- Compte : Administrator (dans le groupe des admins locaux)
-- Mot de passe : Azerty1*
-- Adresse IP fixe : 192.168.1.43
-  
- #### c. Configurations des adresses IP fixe pour la mise en réseau
-
+## Pour Windows
  - Configuration de l'IP statique sur Windows Server et Windows 10 en interface graphique
 
 1. **Ouvrir le Centre Réseau et Partage :**
@@ -79,6 +76,98 @@
 7. **Valider les paramètres :**
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
+  
+## Pour Linux
+
+- Sur le serveur DEBIAN
+
+### 1. Ouvrir une session avec des privilèges administratifs
+
+#### Ouvrez un terminal et passez en mode superutilisateur ou utilisez sudo pour chaque commande.
+
+
+#### 2. Identifier le nom de l'interface réseau
+
+- Vérifiez le nom de l'interface réseau (ici, nous supposons que c'est ens18 ).
+
+`ip a`
+
+- Le nom de votre interface réseau (surligné en jaune) :
+
+![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian1.png)
+
+4. Modifier le fichier de configuration réseau
+Éditez le fichier /etc/network/interfaces.
+`nano /etc/network/interfaces`
+
+Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
+
+- auto ens18
+- iface ens18 inet static
+- address 192.168.1.x
+- netmask 255.255.255.0
+- gateway 192.168.1.254
+- dns-nameservers 192.168.1.254
+
+4. Enregistrer et fermer le fichier
+Pour enregistrer et fermer le fichier dans nano :
+
+*Appuyez sur Ctrl + O puis Enter pour enregistrer.
+Appuyez sur Ctrl + X pour quitter l'éditeur.*
+
+5. Redémarrer le service réseau
+Redémarrez le service réseau pour appliquer les modifications.
+`systemctl restart networking`
+6. Vérifier la nouvelle configuration IP
+Vérifiez que l'adresse IP a été mise à jour correctement.
+`ip a`
+
+![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
+
+- Sur le client Ubuntu
+
+### Ouvrir le fichier de configuration Netplan :
+
+- Le fichier de configuration Netplan se trouve généralement dans le répertoire /etc/netplan/.
+- Listez les fichiers dans ce répertoire pour identifier le fichier de configuration :
+
+```ls /etc/netplan/```
+
+### Ouvrez le fichier de configuration (par exemple, 01-netcfg.yaml) avec un éditeur de texte :
+
+```sudo nano /etc/netplan/01-netcfg.yaml```
+
+#### Modifier les paramètres réseau :
+
+- Localisez la section ethernets et modifiez-la pour définir une adresse IP statique. Voici un exemple de configuration :
+
+`
+yaml
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses: [192.168.1.100/24]
+      gateway4: 192.168.1.1
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
+`
+
+- Remplacez `eth0` ar le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande `ip a`).
+- Remplacez `192.168.1.100/24` par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
+- Remplacez `192.168.1.1` par l'adresse IP de la passerelle (gateway).
+- Remplacez `8.8.8.8`, `8.8.4.4` par les adresses IP des serveurs DNS que vous souhaitez utiliser.
+- Appliquer les modifications :
+
+`sudo netplan apply`
+
+Vérification
+Vérifier la nouvelle adresse IP :
+
+`ip a`
+
+- Assurez-vous que l'adresse IP a été correctement modifiée.
 
  #### d. Configurations des pare-feu pour la connectivité
 ## Pour Windows
