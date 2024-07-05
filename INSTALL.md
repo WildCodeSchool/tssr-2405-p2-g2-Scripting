@@ -77,7 +77,7 @@
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
   
-### Pour Linux : Serveur DEBIAN
+## Pour Linux : Serveur DEBIAN
 
 ### 1. Ouvrir une session avec des privilèges administratifs
 
@@ -94,11 +94,11 @@
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian1.png)
 
-4. Modifier le fichier de configuration réseau
+- Modifier le fichier de configuration réseau
 Éditez le fichier /etc/network/interfaces.
 `nano /etc/network/interfaces`
 
-Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
+- Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
 
 - auto ens18
 - iface ens18 inet static
@@ -107,33 +107,33 @@ Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau
 - gateway 192.168.1.254
 - dns-nameservers 192.168.1.254
 
-4. Enregistrer et fermer le fichier
+- Enregistrer et fermer le fichier
 Pour enregistrer et fermer le fichier dans nano :
 
 *Appuyez sur Ctrl + O puis Enter pour enregistrer.
 Appuyez sur Ctrl + X pour quitter l'éditeur.*
 
-5. Redémarrer le service réseau
-Redémarrez le service réseau pour appliquer les modifications.
+- Redémarrez le service réseau pour appliquer les modifications.
 `systemctl restart networking`
-6. Vérifier la nouvelle configuration IP
-Vérifiez que l'adresse IP a été mise à jour correctement.
+
+- Vérifiez que l'adresse IP a été mise à jour correctement.
+
 `ip a`
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
 
-### Pour Linux : Client Ubuntu
+## Pour Linux : Client Ubuntu
 
 ### Ouvrir le fichier de configuration Netplan :
 
 - Le fichier de configuration Netplan se trouve généralement dans le répertoire /etc/netplan/.
 - Listez les fichiers dans ce répertoire pour identifier le fichier de configuration :
 
-```ls /etc/netplan/```
+`ls /etc/netplan/`
 
 ### Ouvrez le fichier de configuration (par exemple, 01-netcfg.yaml) avec un éditeur de texte :
 
-```sudo nano /etc/netplan/01-netcfg.yaml```
+`sudo nano /etc/netplan/01-netcfg.yaml`
 
 #### Modifier les paramètres réseau :
 
@@ -153,21 +153,24 @@ network:
 `
 
 - Remplacez `eth0` ar le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande `ip a`).
+
 - Remplacez `192.168.1.100/24` par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
+
 - Remplacez `192.168.1.1` par l'adresse IP de la passerelle (gateway).
+
 - Remplacez `8.8.8.8`, `8.8.4.4` par les adresses IP des serveurs DNS que vous souhaitez utiliser.
+
 - Appliquer les modifications :
 
 `sudo netplan apply`
 
-Vérification
-Vérifier la nouvelle adresse IP :
+### Vérifier la nouvelle adresse IP :
 
 `ip a`
 
 - Assurez-vous que l'adresse IP a été correctement modifiée.
 
- #### b. Configurations des pare-feu pour la connectivité
+ ## B. Configurations des pare-feu pour la connectivité
 ### Pour Windows
 
 1. **Ouvrir le Pare-feu Windows avec fonctions avancées de sécurité :**
