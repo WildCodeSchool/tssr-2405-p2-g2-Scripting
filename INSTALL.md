@@ -1,5 +1,5 @@
 ## Prérequis : 
-#### Ubuntu
+#### Ubuntu :
 
 - *Client Ubuntu 22.04 LTS :*
 - *Nom : CLILIN01*
@@ -7,7 +7,7 @@
 - *Mot de passe : Azerty1**
 - *Adresse IP fixe : 172.16.10.30/24*
 
-#### Debian
+#### Debian :
 
 - *Serveur Debian 12 :*
 - *Nom : SRVLX01*
