@@ -77,7 +77,7 @@
    - Cliquez sur "OK" pour fermer les fenêtres de propriétés.
    - Cliquez sur "Fermer" pour terminer la configuration.
   
-## Pour Linux : Serveur DEBIAN
+### Pour Linux : Serveur DEBIAN
 
 ### 1. Ouvrir une session avec des privilèges administratifs
 
@@ -94,11 +94,11 @@
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian1.png)
 
-- Modifier le fichier de configuration réseau
+4. Modifier le fichier de configuration réseau
 Éditez le fichier /etc/network/interfaces.
 `nano /etc/network/interfaces`
 
-- Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
+Ajoutez ou modifiez les lignes suivantes pour configurer votre interface réseau (ens18 dans cet ex)  avec une adresse IP fixe.
 
 - auto ens18
 - iface ens18 inet static
@@ -107,33 +107,33 @@
 - gateway 192.168.1.254
 - dns-nameservers 192.168.1.254
 
-- Enregistrer et fermer le fichier
+4. Enregistrer et fermer le fichier
 Pour enregistrer et fermer le fichier dans nano :
 
 *Appuyez sur Ctrl + O puis Enter pour enregistrer.
 Appuyez sur Ctrl + X pour quitter l'éditeur.*
 
-- Redémarrez le service réseau pour appliquer les modifications.
+5. Redémarrer le service réseau
+Redémarrez le service réseau pour appliquer les modifications.
 `systemctl restart networking`
-
-- Vérifiez que l'adresse IP a été mise à jour correctement.
-
+6. Vérifier la nouvelle configuration IP
+Vérifiez que l'adresse IP a été mise à jour correctement.
 `ip a`
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
 
-## Pour Linux : Client Ubuntu
+### Pour Linux : Client Ubuntu
 
 ### Ouvrir le fichier de configuration Netplan :
 
 - Le fichier de configuration Netplan se trouve généralement dans le répertoire /etc/netplan/.
 - Listez les fichiers dans ce répertoire pour identifier le fichier de configuration :
 
-`ls /etc/netplan/`
+```ls /etc/netplan/```
 
 ### Ouvrez le fichier de configuration (par exemple, 01-netcfg.yaml) avec un éditeur de texte :
 
-`sudo nano /etc/netplan/01-netcfg.yaml`
+```sudo nano /etc/netplan/01-netcfg.yaml```
 
 #### Modifier les paramètres réseau :
 
@@ -153,24 +153,21 @@ network:
 `
 
 - Remplacez `eth0` ar le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande `ip a`).
-
 - Remplacez `192.168.1.100/24` par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
-
 - Remplacez `192.168.1.1` par l'adresse IP de la passerelle (gateway).
-
 - Remplacez `8.8.8.8`, `8.8.4.4` par les adresses IP des serveurs DNS que vous souhaitez utiliser.
-
 - Appliquer les modifications :
 
 `sudo netplan apply`
 
-### Vérifier la nouvelle adresse IP :
+Vérification
+Vérifier la nouvelle adresse IP :
 
 `ip a`
 
 - Assurez-vous que l'adresse IP a été correctement modifiée.
 
- ## B. Configurations des pare-feu pour la connectivité
+ #### b. Configurations des pare-feu pour la connectivité
 ### Pour Windows
 
 1. **Ouvrir le Pare-feu Windows avec fonctions avancées de sécurité :**
@@ -457,3 +454,29 @@ scp C:\Users\Administrator\.ssh\id_rsa.pub utilisateurclient@ipclient:/tmp/id_rs
 Le fichier sera copié sur le client Linux, il n'y aura plus qu'à le copier dans le fichier depuis le client.
 ```
 cat ~/utilisateur/tmp/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+### FAQ : Solutions aux Problèmes Connus et Communs
+
+#### Problème : Connexion SSH entre serveur Linux et client Windows ne fonctionne pas.
+
+- **Solution** : Assurez-vous que SSH est installé et configuré correctement sur le serveur Linux (`openssh-server`). Vérifiez également les règles du pare-feu pour autoriser le trafic SSH entrant (`ufw allow ssh`). Sur Windows, assurez-vous que le client SSH est installé (`OpenSSH Client` via le Gestionnaire de serveur).
+
+#### Problème : Impossible de générer les clés SSH sur Linux.
+
+- **Solution** : Vérifiez que vous avez les permissions nécessaires pour accéder au répertoire `~/.ssh` et pour exécuter `ssh-keygen`. Utilisez `sudo` si nécessaire. Assurez-vous également que le dossier `.ssh` existe.
+
+#### Problème : Connexion PowerShell Remoting entre serveur Windows et client Linux échoue.
+
+- **Solution** : Assurez-vous que PowerShell Remoting est activé sur les deux machines avec `Enable-PSRemoting -Force`. Vérifiez les configurations de pare-feu pour autoriser les ports nécessaires (5985 pour HTTP, 5986 pour HTTPS sur Windows). Assurez-vous que les hôtes sont ajoutés aux listes de confiance mutuelle (`Set-Item wsman:\localhost\Client\TrustedHosts`).
+
+#### Problème : Erreur de permission lors de la copie de la clé SSH vers le client Linux.
+
+- **Solution** : Assurez-vous que le répertoire `~/.ssh` existe sur le client Linux et que vous avez les permissions nécessaires pour y ajouter des fichiers. Utilisez `scp` avec les droits d'administrateur si nécessaire.
+
+#### Problème : Impossible de démarrer le service SSH sur le serveur Linux après l'installation.
+
+- **Solution** : Vérifiez les logs du système (`journalctl -xe`) pour des erreurs spécifiques. Assurez-vous que le package `openssh-server` est correctement installé et que le port SSH (par défaut 22) n'est pas bloqué par le pare-feu.
+
+#### Problème : La connexion SSH nécessite un mot de passe à chaque utilisation.
+
+- **Solution** : Utilisez une paire de clés SSH pour l'authentification sans mot de passe. Générez une paire de clés avec `ssh-keygen` sur le client, puis copiez la clé publique vers `~/.ssh/authorized_keys` sur le serveur.
