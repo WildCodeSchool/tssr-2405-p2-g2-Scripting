@@ -1,10 +1,13 @@
 ## Prérequis : 
+#### Ubuntu
 
 - *Client Ubuntu 22.04 LTS :*
 - *Nom : CLILIN01*
 - *Compte utilisateur : wilder (dans le groupe sudo)*
 - *Mot de passe : Azerty1**
 - *Adresse IP fixe : 172.16.10.30/24*
+
+#### Debian
 
 - *Serveur Debian 12 :*
 - *Nom : SRVLX01*
