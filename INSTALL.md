@@ -1,4 +1,18 @@
-# Changer l'adresse IP sur Debian et Ubuntu Linux
+#### Prérequis : 
+
+- Client Ubuntu 22.04 LTS :
+- Nom : CLILIN01
+- Compte utilisateur : wilder (dans le groupe sudo)
+- Mot de passe : Azerty1*
+- Adresse IP fixe : 172.16.10.30/24
+
+- Serveur Debian 12 :
+- Nom : SRVLX01
+- Compte : root
+- Mot de passe : Azerty1*
+- Adresse IP fixe : 172.16.10.10/24
+
+# Changer l'adresse IP sur Debian 
 
 ## Prérequis techniques
 
@@ -52,35 +66,125 @@ Vérifiez que l'adresse IP a été mise à jour correctement.
 
 ![Choix de l'adaptateur](Images/Choix_IP_Fixe_Debian2.png)
 
-## 3. VM Ubuntu Client 22.04 LTS
+# Changer l'adresse IP sur Ubuntu
 
-#### Prérequis : 
-- Client Ubuntu 22.04 LTS :
-- Nom : CLILIN01
-- Compte utilisateur : wilder (dans le groupe sudo)
-- Mot de passe : Azerty1*
-- Adresse IP fixe : 172.16.10.30/24
+### Ouvrir le fichier de configuration Netplan :
 
-#### Configuration obligatoire :
-**A. Installation SSH**
+- Le fichier de configuration Netplan se trouve généralement dans le répertoire /etc/netplan/.
+- Listez les fichiers dans ce répertoire pour identifier le fichier de configuration :
 
- - Exécuter le Terminal
+```ls /etc/netplan/```
 
-```bash
-sudo apt-get install openssh-server
-```
+### Ouvrez le fichier de configuration (par exemple, 01-netcfg.yaml) avec un éditeur de texte :
 
-![UBUNTU](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P1-G1-SecurisationDeMotDePasse/main/Images/Images%20Greg/install%20ssh%20Ubuntu%201.PNG)
+```sudo nano /etc/netplan/01-netcfg.yaml```
 
-Lors du message : **`Souhaitez-vous continuer ? [O/n]`**-> Taper **`O`**
+#### Modifier les paramètres réseau :
+
+- Localisez la section ethernets et modifiez-la pour définir une adresse IP statique. Voici un exemple de configuration :
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses: [192.168.1.100/24]
+      gateway4: 192.168.1.1
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4] ```
 
 
-- Une fois le SSH installé, il faut l'activer :
-```bash
- sudo systemctl enable ssh
-```
+- Remplacez eth0 par le nom de votre interface réseau (vous pouvez trouver le nom de l'interface en utilisant la commande ip a).
+- Remplacez 192.168.1.100/24 par l'adresse IP et le masque de sous-réseau que vous souhaitez utiliser.
+- Remplacez 192.168.1.1 par l'adresse IP de la passerelle (gateway).
+- Remplacez 8.8.8.8, 8.8.4.4 par les adresses IP des serveurs DNS que vous souhaitez utiliser.
+- Appliquer les modifications :
 
-![active](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P1-G1-SecurisationDeMotDePasse/main/Images/Images%20Greg/activation%20ssh%20ubuntu.PNG)
+```sudo netplan apply```
+
+Vérification
+Vérifier la nouvelle adresse IP :
+
+```ip a```
+
+- Assurez-vous que l'adresse IP a été correctement modifiée.
+
+
+
+## Installation d'OpenSSH sur le Serveur Debian
+
+### Étape 1 : Mise à jour du Système
+
+- Mettre à jour la liste des paquets et les paquets installés :
+
+```sudo apt update
+sudo apt upgrade```
+
+### Étape 2 : Installation d'OpenSSH Server
+
+Installer OpenSSH Server :
+
+```sudo apt install openssh-server```
+
+Vérifier que le service SSH est actif :
+
+sudo systemctl status ssh
+
+Démarrer et activer le service SSH :
+
+sudo systemctl start ssh
+sudo systemctl enable ssh
+Configuration du Serveur SSH 
+Configurer les paramètres du serveur SSH en éditant le fichier de configuration
+
+sudo nano /etc/ssh/sshd_config
+Quelques paramètres importants que vous pouvez configurer :
+
+PermitRootLogin no
+PasswordAuthentication yes
+Redémarrer le service SSH pour appliquer les modifications :
+
+sudo systemctl restart ssh
+
+Installation sur le Client Ubuntu
+Étape 1 : Mise à jour du Système
+Mettre à jour la liste des paquets et les paquets installés :
+
+sudo apt update
+sudo apt upgrade
+
+Étape 2 : Installation d'OpenSSH Client
+
+Installer OpenSSH Client :
+
+sudo apt install openssh-client
+Vérification de la Connexion SSH
+Trouver l'adresse IP du serveur Debian :
+
+Sur le serveur Debian, exécutez :
+
+hostname -I
+
+Se connecter au serveur Debian depuis le client Ubuntu :
+
+Sur le client Ubuntu, ouvrez un terminal et exécutez :
+
+ssh username@ip_address_of_debian_server
+Remplacez username par votre nom d'utilisateur sur le serveur Debian.
+Remplacez ip_address_of_debian_server par l'adresse IP obtenue.
+Accepter l'empreinte numérique de la clé du serveur la première fois :
+
+Vous verrez un message similaire à :
+vbnet
+The authenticity of host 'ip_address_of_debian_server (ip_address_of_debian_server)' can't be established.
+ECDSA key fingerprint is SHA256:...
+Are you sure you want to continue connecting (yes/no)?
+
+Tapez yes et appuyez sur Entrée.
+
+Entrer le mot de passe pour username sur le serveur Debian.
+
 
 
 
