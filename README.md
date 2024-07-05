@@ -3,11 +3,11 @@
 ## Introduction : Mise en Contexte
 
 Ce projet a pour objectif de créer un script qui s’exécute sur une machine locale et qui effectue des tâches sur des machines distantes, toutes connectées sur le même réseau. Les tâches peuvent inclure des actions pour l'utilisateur telles que : 
-- la création, suppression de compte et des demandes d'informations comme la date de la derniére connexion
+- La création, suppression de compte et des demandes d'informations comme la date de la derniére connexion.
   
 Pour l'ordinateur :  
 
-- arrêt, redémarrage de la machine ou des requêtes d’information comme la version de l'OS.
+- Arrêt, redémarrage de la machine ou des requêtes d’information comme la version de l'OS.
    
 Ce projet est mené par une équipe de 5 personnes en formation TSSR.
 
@@ -40,32 +40,61 @@ Depuis un serveur, cibler une machine cliente avec un type d’OS différent.
 
 ## Choix Techniques
 
-- **Système d'exploitation** :
-  - OS : [Nom du système d'exploitation]
-  - Version : [Version du système d'exploitation]
+### Les Serveurs
+
+| **Système**       | **Debian 12.5**  | **Windows Server 2022**  |
+|-------------------|------------------|--------------------------|
+| **HostName**      | SRVLX01          | SRVWIN01                 |
+| **Login**         | root             | administrator            |
+| **Password**      | Azerty1*         | Azerty1*                 |
+| **IP Fixe**       | 172.16.10.46/24  | 172.16.10.40/24           |
+| **Spécificité**   | Bash shell 5.2.21             | Powershell Core 7.4 LTS inclus |
+
+### Les Clients
+
+| **Système**          | **Ubuntu 22.04 LTS 01** | **Windows 10** | 
+|----------------------|-------------------------|-------------------------|
+| **HostName**         | CLILIN01                | CLIWIN01                | 
+| **Login**            | wilder                  | wilder                  | 
+| **Password**         | Azerty1*                | Azerty1*                | 
+| **IP Fixe**          | 172.16.10.45/24         | 172.16.10.43/24         |
+
+ 
+  
 - **Langages de script** : Powershell/Bash
 - **Outils de gestion de projet** : Jira
 - **Contrôle de version** : Git
 - **Outils de communication** : Discord/GoogleMeet
-- **Automatisation des tâches** : 
+
 
 ## Difficultés Rencontrées
 
 ### Problèmes Techniques Rencontrés
 - Mise en réseau des VM clients et serveurs, ping possible depuis les serveurs mais pas depuis les postes clients.
-- [Description du problème 2]
-- [Description du problème 3]
+- Exécution de scripts PowerShell sur des machines cibles Windows avec des permissions limitées.
+- Difficultés dans l'authentification et l'autorisation des scripts shell sur les machines cibles Ubuntu.
+
+### Problèmes de Communication
+- Synchronisation des tâches entre les membres de l'équipe.
+- Partage de la documentation et des mises à jour de l'état du projet.
+- Coordination des réunions et des points de suivi réguliers.
 
 ## Solutions Trouvées
 
 ### Solutions et Alternatives
-- Configurations des IP fixes pour chaque VM et des pare-feu sur les postes clients pour autoriser les requêtes ICMP entrantes, test de connectivité via la commande PING.
-- [Solution pour le problème 2]
-- [Solution pour le problème 3]
+- **Réseau** : Configuration des IP fixes pour chaque VM et des pare-feu sur les postes clients pour autoriser les requêtes ICMP entrantes, test de connectivité via la commande PING.
+- **Scripts PowerShell** : Utilisation de comptes administratifs locaux avec les permissions nécessaires pour l'exécution des scripts PowerShell. Implémentation de la signature des scripts pour éviter les restrictions d'exécution.
+- **Scripts Shell** : Mise en place de clés SSH pour l'authentification sans mot de passe et ajout des utilisateurs appropriés dans le fichier `sudoers` pour permettre l'exécution des scripts avec les permissions nécessaires.
+- **Communication** : Utilisation d'outils de gestion de projet comme Jira pour suivre les tâches et les progrès. Organisation de réunions ponctuelles via Discord pour synchroniser l'équipe et résoudre les problèmes rapidement. Partage de la documentation via Google Drive et Github pour assurer l'accès à jour pour tous les membres de l'équipe.
 
 ## Améliorations Possibles
 
 ### Suggestions d’Améliorations Futures
-- [Suggestion d'amélioration 1]
-- [Suggestion d'amélioration 2]
-- [Suggestion d'amélioration 3]
+
+- **Automatisation des Déploiements** : Mettre en place des outils d'automatisation (comme Ansible ou Puppet) pour déployer et configurer les scripts sur les machines cibles de manière plus efficace.
+- **Tests de Compatibilité Cross-OS** : Travailler sur l'objectif secondaire de cibler des machines clientes avec des types d’OS différents (par exemple, exécuter des scripts PowerShell depuis un serveur Debian vers une machine Windows et vice versa).
+- **Renforcement de la Sécurité** : Continuer à améliorer les mesures de sécurité en intégrant des audits de sécurité réguliers et en implémentant des mécanismes de détection et de réponse aux intrusions.
+- **Optimisation des Scripts** : Réviser et optimiser les scripts pour améliorer leur performance et leur fiabilité. Ajouter des fonctionnalités de personnalisation pour améliorer l'expérience utilisateur.
+
+
+
