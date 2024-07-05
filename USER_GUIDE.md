@@ -1,6 +1,8 @@
-## Guide d'utilisation du script BASH "Scripting_Project" 
+## Guide d'utilisation : Script BASH "Scripting_Project.sh" 
 
-Le script "Scripting_Project" permet de gérer des opérations sur une machine distante via SSH. Suivez ces étapes pour utiliser le script efficacement :
+Le script "Scripting_Project" permet de gérer des opérations sur une machine distante via SSH.   
+
+Suivez ces étapes pour utiliser le script efficacement :
 
 ### Étape 1 : Lancement du script
 
@@ -13,7 +15,7 @@ Le script "Scripting_Project" permet de gérer des opérations sur une machine d
 4. Lancez le script en exécutant la commande suivante :
 
 ```bash
-./Scripting_Project
+./Scripting_Project.sh
 ```
 
 
@@ -86,7 +88,7 @@ le sous menu pour l'option 2 du menu principal :
 
 ---
 
-### FAQ (Foire Aux Questions)
+### FAQ 
 
 
 **Q : Comment vérifier si le script a réussi à se connecter à la machine distante via SSH ?**
@@ -108,3 +110,59 @@ le sous menu pour l'option 2 du menu principal :
 **Q : Que faire si le script semble ne pas répondre ou se bloque pendant une opération ?**
 
 **R :** Vérifiez la console ou le terminal où le script est en cours d'exécution pour tout message d'erreur. Si le script semble gelé, vous pouvez essayer d'interrompre son exécution en utilisant `Ctrl + C` dans le terminal. Analysez ensuite les messages de journalisation pour identifier la cause du problème.
+
+## Guide d'utilisation du Script Powershell
+
+### Menu principal :
+
+#### Ici 3 options s'offrent à vous :
+
+- Vous pouvez aller dans le menu "Utilisateur" en tapant `1` si vous voulez cibler un utilisateur.
+- Vous pouvez aussi aller dans le menu "Ordinateur" en tapant `2` si vous voulez cibler un ordinateur
+- Vous pouvez tapez `3` pour quitter le script.
+
+![Capture d'écran 2024-07-03 164643](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/87a68ae3-9f1b-494c-a18c-c3c1ffe186e9)
+
+### Menu Utilisateur
+
+#### Dans le menu "Utilisateur" : 
+
+- Vous pouvez "Créer un compte utilisateur" en tapant `1` qui va vous créer un utilisateur du nom que vous souhaitez localement sur votre ordinateur.
+- Vous pouvez "Supprimez un compte utilisateur" en tapant `2` ( il faut le nom de l'utilisateur exacte pour le faire ) .
+- Vous pouvez aussi  "Obtenir la date de derniere connexion" d'un utilisateur souhaité en tapant `3`
+- Vous pouvez faire "Retour" en tapant `4`.
+
+![Capture d'écran 2024-07-03 164705](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/9f85d529-5e9c-4e57-860b-b9de2e381e91)
+
+#### Dans le menu "Ordinateur" : 
+
+- Vous pouvez "Arrêter l'ordinateur" souhaité en tapant `1` (avec l'IP ou le nom de l'ordinateur) .
+- Vous pouvez "Redémarrer l'ordinateur" souhaité en tapant `2` (avec l'IP ou le nom de l'ordinateur) .
+- Vous pouvez aussi  "Obtenir la version de l'OS" de l'ordinateur cible en tapant `3` (avec l'IP ou le nom de l'ordinateur)
+- Vous pouvez faire "Retour" en tapant `4`.
+
+![Capture d'écran 2024-07-03 164742](https://github.com/WildCodeSchool/tssr-2405-p2-g2-Scripting/assets/156552845/f1414c6d-75e1-4568-ade2-21982b18551a)
+
+### FAQ 
+
+**1. Que faire si le script ne parvient pas à créer un compte utilisateur ?**
+
+Assurez-vous que le nom d'utilisateur spécifié est unique et conforme aux règles de création de comptes sur votre système. Vérifiez également que vous disposez des privilèges nécessaires pour créer des comptes locaux.
+
+**2. Comment éviter les erreurs de spécification d'ordinateur lors d'une opération à distance ?**
+
+Utilisez l'adresse IP ou le nom de l'ordinateur correctement pour garantir une connexion valide et stable. Assurez-vous que l'ordinateur cible est accessible sur le réseau et que les autorisations appropriées sont en place.
+
+**3. Que faire si le script ne parvient pas à redémarrer un ordinateur distant ?**
+
+Vérifiez que l'ordinateur cible est allumé, connecté au réseau et accessible à distance. Assurez-vous également que vous avez les droits nécessaires pour exécuter des commandes de redémarrage à distance.
+
+**4. Comment sécuriser l'exécution automatisée de ce script ?**
+
+Utilisez des comptes d'utilisateur avec les privilèges minimisés nécessaires et configurez le Planificateur de tâches de Windows pour exécuter le script à des heures spécifiques. Limitez l'accès aux scripts et aux systèmes pour minimiser les risques de sécurité.
+
+**5. Que faire en cas de messages d'erreur imprévus lors de l'exécution du script ?**
+
+Consultez les détails du message d'erreur dans PowerShell pour identifier la cause du problème. Vérifiez la syntaxe des commandes et assurez-vous que toutes les dépendances requises sont satisfaites, telles que les modules PowerShell et les autorisations d'accès.
+
+
