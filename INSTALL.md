@@ -115,88 +115,78 @@ Vérifier la nouvelle adresse IP :
 - Assurez-vous que l'adresse IP a été correctement modifiée.
 
 
-## Installation d'OpenSSH sur le Serveur Debian
+# Installation de OpenSSH sur Ubuntu (Client) et Debian (Serveur)
 
-### Étape 1 : Mise à jour du Système
+## Sur le client Ubuntu
 
-- Mettre à jour la liste des paquets et les paquets installés :
+1. **Mettre à jour les paquets**
+   ```bash
+   sudo apt update
+   ```
 
-`sudo apt update
-sudo apt upgrade`
+2. **Installer le client OpenSSH**
+   ```bash
+   sudo apt install openssh-client
+   ```
 
-### Étape 2 : Installation d'OpenSSH Server
+3. **Vérifier l'installation**
+   ```bash
+   ssh -V
+   ```
+   Cette commande devrait afficher la version de l'OpenSSH client installée.
 
-- Installer OpenSSH Server :
+## Sur le serveur Debian
 
-`sudo apt install openssh-server`
+1. **Mettre à jour les paquets**
+   ```bash
+   sudo apt update
+   ```
 
-- Vérifier que le service SSH est actif :
+2. **Installer le serveur OpenSSH**
+   ```bash
+   sudo apt install openssh-server
+   ```
 
-`sudo systemctl status ssh`
+3. **Vérifier l'état du service SSH**
+   ```bash
+   sudo systemctl status ssh
+   ```
+   Vous devriez voir un message indiquant que le service SSH est actif et en cours d'exécution.
 
-- Démarrer et activer le service SSH :
+4. **Configurer le serveur SSH (optionnel)**
+   Vous pouvez éditer le fichier de configuration du serveur SSH pour ajuster les paramètres selon vos besoins :
+   ```bash
+   sudo nano /etc/ssh/sshd_config
+   ```
+   Après avoir apporté des modifications, redémarrez le service SSH pour qu'elles prennent effet :
+   ```bash
+   sudo systemctl restart ssh
+   ```
 
-`sudo systemctl start ssh
-sudo systemctl enable ssh`
+5. **Ouvrir le port SSH dans le pare-feu (si applicable)**
+   ```bash
+   sudo ufw allow ssh
+   ```
+   Ensuite, vérifiez que le pare-feu permet bien le trafic SSH :
+   ```bash
+   sudo ufw status
+   ```
 
-### Configuration du Serveur SSH :
+## Connexion depuis le client Ubuntu au serveur Debian
 
-- Configurer les paramètres du serveur SSH en éditant le fichier de configuration
+1. **Utiliser la commande SSH pour se connecter**
+   ```bash
+   ssh username@ip_du_serveur
+   ```
+   Remplacez `username` par votre nom d'utilisateur sur le serveur et `ip_du_serveur` par l'adresse IP de votre serveur Debian.
 
-`sudo nano /etc/ssh/sshd_config`
+2. **Accepter l'empreinte du serveur**
+   Lors de la première connexion, il vous sera demandé d'accepter l'empreinte du serveur. Tapez `yes` et appuyez sur Entrée.
 
-- Quelques paramètres importants que vous pouvez configurer :
-
-`PermitRootLogin no
-PasswordAuthentication yes`
-
-- Redémarrer le service SSH pour appliquer les modifications :
-
-`sudo systemctl restart ssh`
-
-## Installation sur le Client Ubuntu
-
-### Étape 1 : Mise à jour du Système
-
-- Mettre à jour la liste des paquets et les paquets installés :
-
-`sudo apt update
-sudo apt upgrade`
+3. **Entrer le mot de passe**
+   Vous serez invité à entrer le mot de passe de l'utilisateur sur le serveur Debian.
 
 
-### Étape 2 : Installation d'OpenSSH Client
-
-- Installer OpenSSH Client :
-
-`sudo apt install openssh-client`
-
-Vérification de la Connexion SSH
-Trouver l'adresse IP du serveur Debian :
-
-#### Sur le serveur Debian, exécutez :
-
-`hostname -I`
-
-- Se connecter au serveur Debian depuis le client Ubuntu :
-
-- Sur le client Ubuntu, ouvrez un terminal et exécutez :
-
-`ssh username@ip_address_of_debian_server`
-
-- Remplacez `username` par votre nom d'utilisateur sur le serveur Debian.
-- Remplacez `ip_address_of_debian_server` par l'adresse IP obtenue.
-
-- Accepter l'empreinte numérique de la clé du serveur la première fois :
-
-- Vous verrez un message similaire à :
-
-`The authenticity of host 'ip_address_of_debian_server (ip_address_of_debian_server)' can't be established.
-ECDSA key fingerprint is SHA256:...
-Are you sure you want to continue connecting (yes/no)?`
-
-- Tapez `yes` et appuyez sur Entrée.
-
-- Entrer le mot de passe pour username sur le serveur Debian.
 
 
 
